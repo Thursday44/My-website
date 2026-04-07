@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nessa Hagoz — Author</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #f5efe4;
+      --warm-white: #faf7f2;
+      --brown-dark: #3b2a1a;
+      --brown-mid: #7a5c3e;
+      --brown-light: #c4a882;
+      --brown-pale: #e8d9c5;
+      --accent: #9c6b3c;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--warm-white);
+      color: var(--brown-dark);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.4;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      position: relative;
+      background: radial-gradient(ellipse at 60% 40%, #e8d5bc 0%, var(--warm-white) 70%);
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--warm-white));
+    }
+
+    .decorative-line {
+      width: 60px;
+      height: 1px;
+      background: var(--brown-light);
+      margin: 0 auto 2.5rem;
+      animation: expand 1.2s ease forwards;
+      transform-origin: center;
+    }
+
+    @keyframes expand {
+      from { width: 0; opacity: 0; }
+      to { width: 60px; opacity: 1; }
+    }
+
+    .hero-tagline {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.3s forwards;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      line-height: 1;
+      color: var(--brown-dark);
+      letter-spacing: -0.01em;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.5s forwards;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      color: var(--brown-mid);
+      margin-top: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.7s forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* About */
+    .about {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp 1s ease 1s forwards;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      margin-bottom: 2rem;
+    }
+
+    .about-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+      line-height: 1.8;
+      color: var(--brown-mid);
+    }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--brown-pale);
+    }
+    .divider-icon {
+      color: var(--brown-light);
+      font-size: 1rem;
+    }
+
+    /* Book section */
+    .book-section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+
+    .book-card {
+      background: linear-gradient(135deg, var(--cream) 0%, #eddfc8 100%);
+      border: 1px solid var(--brown-pale);
+      border-radius: 2px;
+      padding: 3rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .book-card::before {
+      content: '❧';
+      position: absolute;
+      top: 1.5rem; right: 2rem;
+      font-size: 2rem;
+      color: var(--brown-pale);
+    }
+
+    .book-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--brown-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .book-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 600;
+      color: var(--brown-dark);
+      margin-bottom: 0.5rem;
+    }
+
+    .book-description {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--brown-mid);
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.5rem;
+      background: var(--brown-dark);
+      color: var(--cream);
+      text-decoration: none;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: background 0.3s ease, transform 0.2s ease;
+      border-radius: 1px;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .contact-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--brown-mid);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-email {
+      display: inline-block;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--brown-pale);
+      padding-bottom: 2px;
+      transition: border-color 0.3s ease, color 0.3s ease;
+    }
+
+    .contact-email:hover {
+      color: var(--brown-dark);
+      border-color: var(--brown-dark);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--brown-pale);
+      border-top: 1px solid var(--brown-pale);
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="decorative-line"></div>
+    <p class="hero-tagline">Author &amp; Storyteller</p>
+    <h1 class="hero-name">Nessa <em>Hagoz</em></h1>
+    <p class="hero-subtitle">Storyteller, dreamer &amp; professional noticer</p>
+  </section>
+
+  <section class="about">
+    <p class="section-label">About</p>
+    <p class="about-text">
+      I'm a collector of stories who writes both fiction and non-fiction. 
+      I'm also a polyglot who loves to dance — even if my dancing skills 
+      haven't quite caught up to my enthusiasm yet.
+    </p>
+  </section>
+
+  <div class="divider"><span class="divider-icon">✦</span></div>
+
+  <section class="book-section">
+    <p class="section-label">My Book</p>
+    <div class="book-card">
+      <p class="book-label">Now Available on Amazon</p>
+      <h2 class="book-title">OCD, The Lies We Believe</h2>
+      <p class="book-description">By Nessa Hagoz</p>
+      <a href="https://www.amazon.com/dp/B0GGDN7R8Y?tag=bk00010a-20&th=1&psc=1&geniuslink=true" target="_blank" class="btn">Get the Book</a>
+    </div>
+  </section>
+
+  <div class="divider"><span class="divider-icon">✦</span></div>
+
+  <section class="contact">
+    <p class="section-label">Get in Touch</p>
+    <p class="contact-text">I'd love to hear from you.</p>
+    <a href="mailto:nessahagoz@gmail.com" class="contact-email">nessahagoz@gmail.com</a>
+  </section>
+
+  <footer>
+    <p>© 2026 Nessa Hagoz &nbsp;·&nbsp; All rights reserved</p>
+  </footer>
+
+</body>
+</html>
